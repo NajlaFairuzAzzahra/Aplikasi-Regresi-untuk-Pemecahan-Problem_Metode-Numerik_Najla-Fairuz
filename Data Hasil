@@ -1,0 +1,17 @@
+# Membentuk ulang data untuk sklearn
+x_reshaped = x.reshape(-1, 1)
+
+# Membuat dan melatih model regresi linear
+model_linear = LinearRegression()
+model_linear.fit(x_reshaped, y)
+y_pred_linear = model_linear.predict(x_reshaped)
+
+# Membuat dan melatih model regresi eksponensial
+# Transformasi ln(y) = ln(C) + b*x untuk model eksponensial
+log_y = np.log(y)
+model_exp = LinearRegression()
+model_exp.fit(x_reshaped, log_y)
+log_C_exp = model_exp.intercept_
+b_exp = model_exp.coef_[0]
+C_exp = np.exp(log_C_exp)
+y_pred_exp = C_exp * np.exp(b_exp * x)
