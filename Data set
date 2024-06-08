@@ -1,0 +1,7 @@
+# Membaca data dari file CSV
+file_path = 'Student_Performance.csv'
+data = pd.read_csv(file_path)
+
+# Mengambil kolom yang diperlukan
+x = data['Sample Question Papers Practiced'].values
+y = data['Performance Index'].values
